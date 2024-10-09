@@ -16,7 +16,6 @@ class Node {
     }
 }
 
-
 const a = new Node(3);
 const b = new Node(11);
 const c = new Node(4);
@@ -30,11 +29,15 @@ b.left = d;
 b.right = e;
 c.right = f;
 
+const treeMinValue = (root, result = []) => {
+    if (root) {
+        result.push(root.val);
+        treeMinValue(root.left, result);
+        treeMinValue(root.right, result);
+    }
 
-const treeMinValue = (root) => {
-    // YOUR CODE HERE
-}
-
+    return Math.min(...result);
+};
 
 /*
         3
@@ -44,5 +47,4 @@ const treeMinValue = (root) => {
   4   -2     1
 */
 
-
-treeMinValue(a); // -> -2
+console.log(treeMinValue(a)); // -> -2

@@ -9,8 +9,6 @@ HINT: Consider if Breadth first will use a STACK or a QUEUE
 
 */
 
-
-
 // DO NOT ALTER THIS CLASS
 class Node {
     constructor(val) {
@@ -19,10 +17,6 @@ class Node {
         this.left = null;
     }
 }
-
-
-
-
 
 const a = new Node('a');
 const b = new Node('b');
@@ -37,12 +31,19 @@ b.left = d;
 b.right = e;
 c.right = f;
 
+const breadthFirstValues = (root, values = []) => {
+    if (values.length === 0) values.push(root.val);
 
+    if (root) {
+        if (root.left) values.push(root.left.val);
+        if (root.right) values.push(root.right.val);
 
-const breadthFirstValues = (root) => {
-    // your code here
-}
+        breadthFirstValues(root.left, values);
+        breadthFirstValues(root.right, values);
+    }
 
+    return values;
+};
 
 /*
      a
@@ -54,6 +55,6 @@ d   e     f
 
 */
 
-
-breadthFirstValues(a);
+let result = breadthFirstValues(a);
+console.log(result);
 //    -> ['a', 'b', 'c', 'd', 'e', 'f']

@@ -15,7 +15,6 @@ class Node {
     }
 }
 
-
 const a = new Node(3);
 const b = new Node(11);
 const c = new Node(4);
@@ -39,11 +38,17 @@ c.right = f;
 
 */
 
+const treeSum = (root, result = []) => {
+    if (root) {
+        result.push(root.val);
+        treeSum(root.left, result);
+        treeSum(root.right, result);
+    }
 
+    return result.reduce((acc, curr) => {
+        return acc + curr;
+    }, 0);
+};
 
-
-const treeSum = (root) => {
-    //  YOUR CODE HERE
-}
-
-treeSum(a); // -> 21
+let result = treeSum(a); // -> 21
+console.log(result);

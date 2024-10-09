@@ -9,20 +9,14 @@ HINT: Consider if Depth first will use a STACK or a QUEUE
 
 */
 
-
-
 // DO NOT ALTER THIS CLASS
 class Node {
-    constructor(val){
+    constructor(val) {
         this.val = val;
         this.right = null;
         this.left = null;
     }
 }
-
-
-
-
 
 const a = new Node('a');
 const b = new Node('b');
@@ -37,7 +31,6 @@ b.left = d;
 b.right = e;
 c.right = f;
 
-
 /*
 
      a
@@ -49,12 +42,15 @@ d   e     f
 
 */
 
+const depthFirstValues = (root, values = []) => {
+    if (root) {
+        values.push(root.val);
+        depthFirstValues(root.left, values);
+        depthFirstValues(root.right, values);
+    }
+    return values;
+};
 
-
-const depthFirstValues = (root) => {
-    // your code here
-}
-
-
-depthFirstValues(a);
+let result = depthFirstValues(a);
+console.log(result);
 //    -> ['a', 'b', 'd', 'e', 'c', 'f']
